@@ -1,5 +1,7 @@
 <?php
 if(!isset($_SESSION)) session_start();
+include "app/cons.php";
+require_once "app/DLL.php";
 
 if(!isset($_POST['b_login'])){
     header('Location: login.php');
@@ -9,18 +11,15 @@ if(!isset($_POST['b_login'])){
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 
-$arquivo_login = 'login/'.$login.'.dat';
-$senha_salva   = 0;
-$cpf_ref       = '';
+$senha_salva = 0;
+$cpf_ref     = '';
 
-if(file_exists($arquivo_login)){
-    $arq   = fopen($arquivo_login, 'r');
-    $linha = fgets($arq, 1000);
-    fclose($arq);
+$consulta  = "SELECT * FROM login WHERE Login = '$login'";
+$resultado = banco($server, $user, $password, $db, $consulta);
 
-    $partes      = explode('|', trim($linha));
-    $senha_salva = $partes[0];
-    $cpf_ref     = isset($partes[1]) ? $partes[1] : '';
+if($linha = $resultado->fetch_assoc()){
+    $senha_salva = $linha['Senha'];
+    $cpf_ref     = $linha['CPF'];
 }
 
 if(md5($senha) != $senha_salva){
@@ -34,18 +33,14 @@ $_SESSION['Logado'] = 'ok';
 $_SESSION['Nome']   = $login;
 $_SESSION['CPF']    = $cpf_ref;
 
-$arquivo_usuario = 'usuarios/'.$cpf_ref.'.dat';
+$consulta  = "SELECT * FROM usuarios WHERE CPF = '$cpf_ref'";
+$resultado = banco($server, $user, $password, $db, $consulta);
 
-if(file_exists($arquivo_usuario)){
-    $arq_u = fopen($arquivo_usuario, 'r');
-    $dados  = fgets($arq_u, 2000);
-    fclose($arq_u);
-
-    $d = explode('|', trim($dados));
-    $_SESSION['NomeCompleto'] = isset($d[0]) ? $d[0] : $login;
-    $_SESSION['Endereco']     = isset($d[2]) ? $d[2] : '';
-    $_SESSION['Cidade']       = isset($d[4]) ? $d[4] : '';
-    $_SESSION['Estado']       = isset($d[5]) ? $d[5] : '';
+if($dados = $resultado->fetch_assoc()){
+    $_SESSION['NomeCompleto'] = $dados['Nome'];
+    $_SESSION['Endereco']     = $dados['Endereco'];
+    $_SESSION['Cidade']       = $dados['Cidade'];
+    $_SESSION['Estado']       = $dados['Estado'];
 } else {
     $_SESSION['NomeCompleto'] = $login;
 }
