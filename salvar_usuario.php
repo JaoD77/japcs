@@ -1,9 +1,7 @@
 <?php
 if(!isset($_SESSION)) session_start();
-
 include "app/cons.php";
-require_once "app/Dll.php";
-
+require_once "app/DLL.php";
 
 if(!isset($_POST['b_salvar_usuario'])){
     header('Location: cadastro1.php');
@@ -26,25 +24,17 @@ if(strlen($cpf_limpo) != 11){
     exit;
 }
 
-$consulta = "SELECT * FROM usuarios WHERE CPF = '$cpf_limpo'";
+$consulta  = "SELECT * FROM usuarios WHERE CPF = '$cpf_limpo'";
 $resultado = banco($server, $user, $password, $db, $consulta);
 
-
-if(!is_dir('usuarios')) mkdir('usuarios', 0777, true);
-
-$arquivo_usuario = 'usuarios/'.$cpf_limpo.'.dat';
-
-if(file_exists($arquivo_usuario)){
+if($resultado->num_rows > 0){
     $_SESSION['erro_cad1'] = 'CPF já cadastrado. Faça login ou use outro CPF.';
     header('Location: cadastro1.php');
     exit;
 }
 
-$linha = $nome.'|'.$cpf_limpo.'|'.$endereco.'|'.$bairro.'|'.$cidade.'|'.$estado.'|'.$cep;
-
-$arq = fopen($arquivo_usuario, 'w');
-fwrite($arq, $linha);
-fclose($arq);
+$consulta = "INSERT INTO usuarios (Id, Nome, CPF, Endereco, Bairro, Cidade, Estado, CEP) VALUES (NULL, '$nome', '$cpf_limpo', '$endereco', '$bairro', '$cidade', '$estado', '$cep')";
+banco($server, $user, $password, $db, $consulta);
 
 $_SESSION['CPF_cad']  = $cpf_limpo;
 $_SESSION['Nome_cad'] = $nome;
