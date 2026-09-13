@@ -1,6 +1,10 @@
 <?php
 if(!isset($_SESSION)) session_start();
 
+include "app/cons.php";
+require_once "app/Dll.php";
+
+
 if(!isset($_POST['b_salvar_usuario'])){
     header('Location: cadastro1.php');
     exit;
@@ -21,6 +25,10 @@ if(strlen($cpf_limpo) != 11){
     header('Location: cadastro1.php');
     exit;
 }
+
+$consulta = "SELECT * FROM usuarios WHERE CPF = '$cpf_limpo'";
+$resultado = banco($server, $user, $password, $db, $consulta);
+
 
 if(!is_dir('usuarios')) mkdir('usuarios', 0777, true);
 
