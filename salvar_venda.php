@@ -1,5 +1,7 @@
 <?php
 if(!isset($_SESSION)) session_start();
+include "app/cons.php";
+require_once "app/DLL.php";
 
 if(!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok'){
     header('Location: login.php');
@@ -30,21 +32,11 @@ foreach($carrinho as $item){
     $itens[] = $item['nome'].' x'.$item['quantidade'].' (R$ '.number_format($item['preco'] * $item['quantidade'], 2, ',', '.').')';
 }
 $lista_produtos = implode('|', $itens);
+$total_bd       = number_format($total, 2, '.', '');
+$login_sessao   = $_SESSION['Nome'];
 
-$linha = $num_venda.'|'.
-         $_SESSION['Nome'].'|'.
-         $nome_completo.'|'.
-         $lista_produtos.'|'.
-         $data_hora.'|'.
-         number_format($total, 2, '.', '').'|'.
-         $pagamento;
-
-if(!is_dir('vendas')) mkdir('vendas', 0777, true);
-
-$arquivo_venda = 'vendas/'.$num_venda.'.dat';
-$arq = fopen($arquivo_venda, 'w');
-fwrite($arq, $linha);
-fclose($arq);
+$consulta = "INSERT INTO vendas (Id, NumVenda, Login, NomeCompleto, Produtos, Data, Total, Pagamento) VALUES (NULL, '$num_venda', '$login_sessao', '$nome_completo', '$lista_produtos', '$data_hora', '$total_bd', '$pagamento')";
+banco($server, $user, $password, $db, $consulta);
 
 $_SESSION['carrinho']       = [];
 $_SESSION['dados_venda'] = [
