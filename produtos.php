@@ -1,12 +1,7 @@
 <?php
-// ─────────────────────────────────────────────
-//  produtos.php — Catálogo de produtos da JAPCS
-//  Inclua com: require 'produtos.php';
-// ─────────────────────────────────────────────
-
 $produtos = [
 
-    // ── Placas de Vídeo ──────────────────────
+    // ── Placas de Vídeo 
     [
         'id'    => 'pv1',
         'nome'  => 'Placa de Vídeo AsRock AMD Radeon RX 7600 Challenger Pro OC, 8GB, GDDR6, FSR, Ray Tracing',
