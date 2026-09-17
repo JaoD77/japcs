@@ -50,6 +50,62 @@ COMMIT;
 SET AUTOCOMMIT=@OLD_AUTOCOMMIT;
 
 --
+-- Table structure for table `produtos`
+--
+
+DROP TABLE IF EXISTS `produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produtos` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Codigo` varchar(20) DEFAULT NULL,
+  `Nome` varchar(200) DEFAULT NULL,
+  `Categoria` varchar(50) DEFAULT NULL,
+  `Preco` decimal(10,2) DEFAULT NULL,
+  `Imagem` varchar(150) DEFAULT NULL,
+  `Descricao` text DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `produtos`
+--
+
+SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
+LOCK TABLES `produtos` WRITE;
+/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES
+(1,'pv1','Placa de Vídeo AsRock AMD Radeon RX 7600 Challenger Pro OC, 8GB, GDDR6, FSR, Ray Tracing','Placa de Vídeo',1649.90,'img/PV1.jpg','8GB GDDR6, FSR, Ray Tracing, 256 Bit — ótimo custo-benefício para 1080p.'),
+(2,'pv2','Placa de Vídeo Biostar AMD Radeon RX 580 2048SP, 8GB, GDDR5, 256 Bit','Placa de Vídeo',839.00,'img/PV2.jpg','8GB GDDR5, 256 Bit — entrada acessível no mundo gamer 1080p.'),
+(3,'pv3','Placa de Vídeo Asus AMD Radeon RX 9060 XT Prime OC, 16GB, GDDR6, FSR, Ray Tracing','Placa de Vídeo',2999.90,'img/PV3.jpg','16GB GDDR6, FSR, Ray Tracing — top de linha AMD para 1440p e 4K.'),
+(4,'monitor1','Monitor Gamer Acer Nitro ED270, 27 Pol, VA, Curvo, FHD, 1ms, 240Hz, FreeSync','Monitor',1299.99,'img/Monitor1.jpg','27\" curvo VA, 240Hz, 1ms, FreeSync — imersão total nos games.'),
+(5,'monitor2','Monitor Gamer AOC, 21.5 Pol, VA, FHD, 1ms, 120Hz, Adaptive-Sync, HDMI/VGA','Monitor',470.00,'img/Monitor2.jpg','21.5\" VA, 120Hz, 1ms, Adaptive-Sync — entrada acessível no setup gamer.'),
+(6,'monitor3','Monitor Gamer Acer Nitro KG273 G0bi, 27 Pol, IPS, FHD, 1ms, 120Hz, Adaptive Sync','Monitor',845.00,'img/Monitor3.jpg','27\" IPS, 120Hz, 1ms, Adaptive Sync — cores vibrantes e ângulo de visão amplo.'),
+(7,'pm1','Placa Mãe AsRock Z890 Pro RS, DDR5, LGA1851, ATX, Chipset Intel Z890','Placa-Mãe',2090.00,'img/PM1.jpg','LGA1851, DDR5, ATX, Chipset Z890 — pronta para Intel Core Ultra série 2.'),
+(8,'pm2','Placa Mãe Asus Prime A620M-E, DDR5, Socket AMD AM5, M-ATX, Chipset A620','Placa-Mãe',630.00,'img/PM2.jpg','AM5, DDR5, M-ATX, Chipset A620 — excelente custo-benefício para Ryzen.'),
+(9,'pm3','Placa Mãe Gigabyte Z890 Aorus Pro Ice, DDR5, LGA1851, ATX, Chipset Intel Z890','Placa-Mãe',3999.99,'img/PM3.jpg','LGA1851, DDR5, ATX, Z890 — máxima performance para Intel Core Ultra.'),
+(10,'pc1','PC Gamer Japcs DeepCool, Intel Core Ultra 9 285, GeForce RTX 5080 16GB, 32GB DDR5','PC Montado',22100.00,'img/PC1.jpg','Topo absoluto: Core Ultra 9 285, RTX 5080 16GB, 32GB DDR5. Montado e certificado.'),
+(11,'pc2','PC Gamer Japcs DeepCool, AMD Ryzen 7 9800X3D, GeForce RTX 5070 12GB','PC Montado',17102.00,'img/PC2.jpg','Melhor CPU para games: Ryzen 7 9800X3D + RTX 5070 12GB. Montado e certificado.'),
+(12,'pc3','PC Gamer Japcs DeepCool, Intel i7-12700KF, GeForce RTX 5070 12GB, 16GB DDR5','PC Montado',12599.00,'img/PC3.jpg','Alta performance: i7-12700KF + RTX 5070 12GB, 16GB DDR5. Montado e certificado.'),
+(13,'pv1','Placa de Vídeo AsRock AMD Radeon RX 7600 Challenger Pro OC, 8GB, GDDR6, FSR, Ray Tracing','Placa de Vídeo',1649.90,'img/PV1.jpg','8GB GDDR6, FSR, Ray Tracing, 256 Bit — ótimo custo-benefício para 1080p.'),
+(14,'pv2','Placa de Vídeo Biostar AMD Radeon RX 580 2048SP, 8GB, GDDR5, 256 Bit','Placa de Vídeo',839.00,'img/PV2.jpg','8GB GDDR5, 256 Bit — entrada acessível no mundo gamer 1080p.'),
+(15,'pv3','Placa de Vídeo Asus AMD Radeon RX 9060 XT Prime OC, 16GB, GDDR6, FSR, Ray Tracing','Placa de Vídeo',2999.90,'img/PV3.jpg','16GB GDDR6, FSR, Ray Tracing — top de linha AMD para 1440p e 4K.'),
+(16,'monitor1','Monitor Gamer Acer Nitro ED270, 27 Pol, VA, Curvo, FHD, 1ms, 240Hz, FreeSync','Monitor',1299.99,'img/Monitor1.jpg','27\" curvo VA, 240Hz, 1ms, FreeSync — imersão total nos games.'),
+(17,'monitor2','Monitor Gamer AOC, 21.5 Pol, VA, FHD, 1ms, 120Hz, Adaptive-Sync, HDMI/VGA','Monitor',470.00,'img/Monitor2.jpg','21.5\" VA, 120Hz, 1ms, Adaptive-Sync — entrada acessível no setup gamer.'),
+(18,'monitor3','Monitor Gamer Acer Nitro KG273 G0bi, 27 Pol, IPS, FHD, 1ms, 120Hz, Adaptive Sync','Monitor',845.00,'img/Monitor3.jpg','27\" IPS, 120Hz, 1ms, Adaptive Sync — cores vibrantes e ângulo de visão amplo.'),
+(19,'pm1','Placa Mãe AsRock Z890 Pro RS, DDR5, LGA1851, ATX, Chipset Intel Z890','Placa-Mãe',2090.00,'img/PM1.jpg','LGA1851, DDR5, ATX, Chipset Z890 — pronta para Intel Core Ultra série 2.'),
+(20,'pm2','Placa Mãe Asus Prime A620M-E, DDR5, Socket AMD AM5, M-ATX, Chipset A620','Placa-Mãe',630.00,'img/PM2.jpg','AM5, DDR5, M-ATX, Chipset A620 — excelente custo-benefício para Ryzen.'),
+(21,'pm3','Placa Mãe Gigabyte Z890 Aorus Pro Ice, DDR5, LGA1851, ATX, Chipset Intel Z890','Placa-Mãe',3999.99,'img/PM3.jpg','LGA1851, DDR5, ATX, Z890 — máxima performance para Intel Core Ultra.'),
+(22,'pc1','PC Gamer Japcs DeepCool, Intel Core Ultra 9 285, GeForce RTX 5080 16GB, 32GB DDR5','PC Montado',22100.00,'img/PC1.jpg','Topo absoluto: Core Ultra 9 285, RTX 5080 16GB, 32GB DDR5. Montado e certificado.'),
+(23,'pc2','PC Gamer Japcs DeepCool, AMD Ryzen 7 9800X3D, GeForce RTX 5070 12GB','PC Montado',17102.00,'img/PC2.jpg','Melhor CPU para games: Ryzen 7 9800X3D + RTX 5070 12GB. Montado e certificado.'),
+(24,'pc3','PC Gamer Japcs DeepCool, Intel i7-12700KF, GeForce RTX 5070 12GB, 16GB DDR5','PC Montado',12599.00,'img/PC3.jpg','Alta performance: i7-12700KF + RTX 5070 12GB, 16GB DDR5. Montado e certificado.');
+/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+SET AUTOCOMMIT=@OLD_AUTOCOMMIT;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -132,4 +188,4 @@ SET AUTOCOMMIT=@OLD_AUTOCOMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-09-17 18:35:42
+-- Dump completed on 2026-09-17 20:03:46
