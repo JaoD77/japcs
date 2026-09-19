@@ -19,6 +19,7 @@
 <img width="923" height="762" alt="Captura de tela 2026-09-19 010513" src="https://github.com/user-attachments/assets/58aa17f2-4444-468d-a7b5-3db52329bf46" />
 
 ### Modelo logico
+:
 
 <img width="917" height="622" alt="Captura de tela 2026-09-19 010535" src="https://github.com/user-attachments/assets/bb2e9e6f-cbfd-4ab9-94fa-3292562a3547" />
 
