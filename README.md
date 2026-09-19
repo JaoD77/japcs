@@ -7,8 +7,8 @@ PROJETO MUITO MASSA ENVEVOLVENDO BANCO DE DADOS E PROGRAMAÇÃO WEB. (mais atual
     
 ## Como Funciona
 
-  + **Vitrine**: Analise dos produtos com opção para adicionar no carrinho
-  + **Carrinho**:
-  + **Cadastro do usuário**:
-  + **Login**:
-  + **Finalizar compra**:
+  + **Vitrine**: Analise dos produtos com opção para adicionar no carrinho,(somente se estiver logado).
+  + **Carrinho**: Possui os produtos comprados, atribuidos ao usuario.
+  + **Cadastro do usuário**: Cadastra dados do usuario,(relacionado diretamente com o login)
+  + **Login**: Indentificador principal, com senha e os dados do cadastro.
+  + **Finalizar compra**: Gera um registro da compra, com dados proprios, relacionada diretamente com o usuario logado.
