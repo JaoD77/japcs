@@ -8,13 +8,7 @@ if(!isset($_POST['b_salvar_usuario'])){
     exit;
 }
 
-$nome     = $_POST['nome'];
-$cpf      = $_POST['cpf'];
-$endereco = $_POST['endereco'];
-$bairro   = $_POST['bairro'];
-$cidade   = $_POST['cidade'];
-$estado   = $_POST['estado'];
-$cep      = $_POST['cep'];
+extract($_POST);
 
 $cpf_limpo = preg_replace('/\D/', '', $cpf);
 
