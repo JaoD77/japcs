@@ -19,7 +19,7 @@ if(empty($carrinho)){
     header('Location: carrinho.php');
     exit;
 }
-$pagamento     = $_POST['pagamento'];
+extract($_POST);
 $num_venda     = date('YmdHis').rand(1000, 9999);
 $data_hora     = date('d/m/Y H:i:s');
 $nome_completo = isset($_SESSION['NomeCompleto']) ? $_SESSION['NomeCompleto'] : $_SESSION['Nome'];
