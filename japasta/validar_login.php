@@ -8,8 +8,7 @@ if(!isset($_POST['b_login'])){
     exit;
 }
 
-$login = $_POST['login'];
-$senha = $_POST['senha'];
+extract($_POST);
 
 $senha_salva = 0;
 $cpf_ref     = '';
