@@ -13,9 +13,7 @@ if(!isset($_SESSION['CPF_cad'])){
     exit;
 }
 
-$login   = $_POST['login'];
-$senha   = $_POST['senha'];
-$senha2  = $_POST['senha2'];
+extract($_POST);
 $cpf_ref = $_SESSION['CPF_cad'];
 
 if($senha != $senha2){
