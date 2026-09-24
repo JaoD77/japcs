@@ -6,9 +6,8 @@ if(!isset($_POST['b_adicionar'])){
     exit;
 }
 
-$produto_id    = $_POST['produto_id'];
-$produto_nome  = $_POST['produto_nome'];
-$produto_preco = floatval($_POST['produto_preco']);
+extract($_POST);
+$produto_preco = floatval($produto_preco);
 
 if(!isset($_SESSION['carrinho'])) $_SESSION['carrinho'] = [];
 
