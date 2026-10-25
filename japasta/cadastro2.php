@@ -1,7 +1,7 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-if(!isset($_SESSION['CPF_cad'])){
+if (!isset($_SESSION['CPF_cad'])) {
     header('Location: cadastro1.php');
     exit;
 }
@@ -39,7 +39,7 @@ if(!isset($_SESSION['CPF_cad'])){
     </div>
   </div>
 
-  <?php if(isset($_SESSION['erro_cad2'])): ?>
+  <?php if (isset($_SESSION['erro_cad2'])): ?>
     <div class="alerta alerta-erro"><?= $_SESSION['erro_cad2'] ?></div>
     <?php unset($_SESSION['erro_cad2']); ?>
   <?php endif; ?>

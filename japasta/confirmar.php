@@ -1,17 +1,17 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-if(!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok'){
+if (!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok') {
     header('Location: login.php');
     exit;
 }
 $carrinho = isset($_SESSION['carrinho']) ? $_SESSION['carrinho'] : [];
-if(empty($carrinho)){
+if (empty($carrinho)) {
     header('Location: carrinho.php');
     exit;
 }
 $total = 0;
-foreach($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
+foreach ($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
 $nome_usuario = isset($_SESSION['NomeCompleto']) ? $_SESSION['NomeCompleto'] : $_SESSION['Nome'];
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ $nome_usuario = isset($_SESSION['NomeCompleto']) ? $_SESSION['NomeCompleto'] : $
 
     <div class="resumo-caixa">
       <div class="resumo-titulo">Produtos</div>
-      <?php foreach($carrinho as $item): ?>
+      <?php foreach ($carrinho as $item): ?>
       <div class="resumo-linha">
         <div class="resumo-linha-nome"><?= $item['nome'] ?> (x<?= $item['quantidade'] ?>)</div>
         <div class="resumo-linha-valor">R$ <?= number_format($item['preco'] * $item['quantidade'], 2, ',', '.') ?></div>
@@ -61,13 +61,13 @@ $nome_usuario = isset($_SESSION['NomeCompleto']) ? $_SESSION['NomeCompleto'] : $
         <div class="resumo-linha-nome">Login</div>
         <div class="resumo-linha-valor"><?= $_SESSION['Nome'] ?></div>
       </div>
-      <?php if(!empty($_SESSION['Endereco'])): ?>
+      <?php if (!empty($_SESSION['Endereco'])): ?>
       <div class="resumo-linha">
         <div class="resumo-linha-nome">Endereço</div>
         <div class="resumo-linha-valor"><?= $_SESSION['Endereco'] ?></div>
       </div>
       <?php endif; ?>
-      <?php if(!empty($_SESSION['Cidade'])): ?>
+      <?php if (!empty($_SESSION['Cidade'])): ?>
       <div class="resumo-linha">
         <div class="resumo-linha-nome">Cidade / UF</div>
         <div class="resumo-linha-valor"><?= $_SESSION['Cidade'] ?> / <?= $_SESSION['Estado'] ?></div>

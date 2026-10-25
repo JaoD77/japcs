@@ -1,36 +1,36 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-if(!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok'){
+if (!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok') {
     $_SESSION['msg_login']           = 'Faça login para ver seu carrinho.';
     $_SESSION['redirect_apos_login'] = 'carrinho.php';
     header('Location: login.php');
     exit;
 }
 
-if(isset($_GET['remover'])){
+if (isset($_GET['remover'])) {
     $idx = intval($_GET['remover']);
-    if(isset($_SESSION['carrinho'][$idx])){
+    if (isset($_SESSION['carrinho'][$idx])) {
         array_splice($_SESSION['carrinho'], $idx, 1);
     }
     header('Location: carrinho.php');
     exit;
 }
 
-if(isset($_GET['mais'])){
+if (isset($_GET['mais'])) {
     $idx = intval($_GET['mais']);
-    if(isset($_SESSION['carrinho'][$idx])){
+    if (isset($_SESSION['carrinho'][$idx])) {
         $_SESSION['carrinho'][$idx]['quantidade']++;
     }
     header('Location: carrinho.php');
     exit;
 }
 
-if(isset($_GET['menos'])){
+if (isset($_GET['menos'])) {
     $idx = intval($_GET['menos']);
-    if(isset($_SESSION['carrinho'][$idx])){
+    if (isset($_SESSION['carrinho'][$idx])) {
         $_SESSION['carrinho'][$idx]['quantidade']--;
-        if($_SESSION['carrinho'][$idx]['quantidade'] <= 0){
+        if ($_SESSION['carrinho'][$idx]['quantidade'] <= 0) {
             array_splice($_SESSION['carrinho'], $idx, 1);
         }
     }
@@ -40,7 +40,7 @@ if(isset($_GET['menos'])){
 
 $carrinho = isset($_SESSION['carrinho']) ? $_SESSION['carrinho'] : [];
 $total    = 0;
-foreach($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
+foreach ($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -66,7 +66,7 @@ foreach($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
   <div class="caixa-form">
     <div class="caixa-form-titulo">Meu Carrinho</div>
 
-    <?php if(empty($carrinho)): ?>
+    <?php if (empty($carrinho)): ?>
 
       <div class="alerta alerta-info">
         Seu carrinho está vazio. <a class="caixa-form-link" href="index.php">Ver produtos</a>
@@ -75,7 +75,7 @@ foreach($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
     <?php else: ?>
 
       <div class="carrinho-lista">
-        <?php foreach($carrinho as $i => $item): ?>
+        <?php foreach ($carrinho as $i => $item): ?>
         <div class="carrinho-item">
           <div class="carrinho-item-nome"><?= $item['nome'] ?></div>
           <div class="carrinho-item-qtd">

@@ -1,12 +1,12 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-if(!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok'){
+if (!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok') {
     header('Location: login.php');
     exit;
 }
 
-if(!isset($_SESSION['dados_venda'])){
+if (!isset($_SESSION['dados_venda'])) {
     header('Location: index.php');
     exit;
 }
@@ -51,7 +51,7 @@ unset($_SESSION['dados_venda']);
 
     <div class="resumo-caixa">
       <div class="resumo-titulo">Itens do Pedido</div>
-      <?php foreach($venda['produtos'] as $item): ?>
+      <?php foreach ($venda['produtos'] as $item): ?>
       <div class="resumo-linha">
         <div class="resumo-linha-nome"><?= $item['nome'] ?> (x<?= $item['quantidade'] ?>)</div>
         <div class="resumo-linha-valor">R$ <?= number_format($item['preco'] * $item['quantidade'], 2, ',', '.') ?></div>

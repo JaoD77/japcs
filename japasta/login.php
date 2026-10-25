@@ -1,7 +1,7 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-if(isset($_SESSION['Logado']) && $_SESSION['Logado'] == 'ok'){
+if (isset($_SESSION['Logado']) && $_SESSION['Logado'] == 'ok') {
     header('Location: carrinho.php');
     exit;
 }
@@ -28,12 +28,12 @@ if(isset($_SESSION['Logado']) && $_SESSION['Logado'] == 'ok'){
 
 <div class="pagina-centralizada">
 
-  <?php if(isset($_SESSION['msg_login'])): ?>
+  <?php if (isset($_SESSION['msg_login'])): ?>
     <div class="alerta alerta-info"><?= $_SESSION['msg_login'] ?></div>
     <?php unset($_SESSION['msg_login']); ?>
   <?php endif; ?>
 
-  <?php if(isset($_SESSION['erro_login'])): ?>
+  <?php if (isset($_SESSION['erro_login'])): ?>
     <div class="alerta alerta-erro"><?= $_SESSION['erro_login'] ?></div>
     <?php unset($_SESSION['erro_login']); ?>
   <?php endif; ?>

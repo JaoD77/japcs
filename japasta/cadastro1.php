@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -34,7 +34,7 @@ if(!isset($_SESSION)) session_start();
     </div>
   </div>
 
-  <?php if(isset($_SESSION['erro_cad1'])): ?>
+  <?php if (isset($_SESSION['erro_cad1'])): ?>
     <div class="alerta alerta-erro"><?= $_SESSION['erro_cad1'] ?></div>
     <?php unset($_SESSION['erro_cad1']); ?>
   <?php endif; ?>
@@ -80,9 +80,9 @@ if(!isset($_SESSION)) session_start();
           <select id="estado" name="estado" required>
             <option value="">Selecione</option>
             <?php
-            foreach(['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS',
+            foreach (['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS',
                      'MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC',
-                     'SP','SE','TO'] as $estado){
+                     'SP','SE','TO'] as $estado) {
                 echo "<option value='$estado'>$estado</option>";
             }
             ?>
