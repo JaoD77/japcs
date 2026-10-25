@@ -1,21 +1,21 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 include "app/cons.php";
 require_once "app/DLL.php";
 
-if(!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok'){
+if (!isset($_SESSION['Logado']) || $_SESSION['Logado'] != 'ok') {
     header('Location: login.php');
     exit;
 }
 
-if(!isset($_POST['b_confirmar'])){
+if (!isset($_POST['b_confirmar'])) {
     header('Location: confirmar.php');
     exit;
 }
 
 $carrinho = isset($_SESSION['carrinho']) ? $_SESSION['carrinho'] : [];
 
-if(empty($carrinho)){
+if (empty($carrinho)) {
     header('Location: carrinho.php');
     exit;
 }
@@ -25,10 +25,10 @@ $data_hora     = date('d/m/Y H:i:s');
 $nome_completo = isset($_SESSION['NomeCompleto']) ? $_SESSION['NomeCompleto'] : $_SESSION['Nome'];
 
 $total = 0;
-foreach($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
+foreach ($carrinho as $item) $total += $item['preco'] * $item['quantidade'];
 
 $itens = [];
-foreach($carrinho as $item){
+foreach ($carrinho as $item) {
     $itens[] = $item['nome'].' x'.$item['quantidade'].' (R$ '.number_format($item['preco'] * $item['quantidade'], 2, ',', '.').')';
 }
 $lista_produtos = implode('|', $itens);

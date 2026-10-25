@@ -1,9 +1,9 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 include "app/cons.php";
 require_once "app/DLL.php";
 
-if(!isset($_POST['b_salvar_usuario'])){
+if (!isset($_POST['b_salvar_usuario'])) {
     header('Location: cadastro1.php');
     exit;
 }
@@ -12,7 +12,7 @@ extract($_POST);
 
 $cpf_limpo = preg_replace('/\D/', '', $cpf);
 
-if(strlen($cpf_limpo) != 11){
+if (strlen($cpf_limpo) != 11) {
     $_SESSION['erro_cad1'] = 'CPF inválido. Digite os 11 dígitos.';
     header('Location: cadastro1.php');
     exit;
@@ -21,7 +21,7 @@ if(strlen($cpf_limpo) != 11){
 $consulta  = "SELECT * FROM usuarios WHERE CPF = '$cpf_limpo'";
 $resultado = banco($server, $user, $password, $db, $consulta);
 
-if($resultado->num_rows > 0){
+if ($resultado->num_rows > 0) {
     $_SESSION['erro_cad1'] = 'CPF já cadastrado. Faça login ou use outro CPF.';
     header('Location: cadastro1.php');
     exit;

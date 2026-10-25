@@ -1,9 +1,9 @@
 <?php
-if(!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 include "app/cons.php";
 require_once "app/DLL.php";
 
-if(!isset($_POST['b_login'])){
+if (!isset($_POST['b_login'])) {
     header('Location: login.php');
     exit;
 }
@@ -11,17 +11,17 @@ if(!isset($_POST['b_login'])){
 extract($_POST);
 
 $senha_salva = 0;
-$cpf_ref     = '';
+$id_usuario  = 0;
 
 $consulta  = "SELECT * FROM login WHERE Login = '$login'";
 $resultado = banco($server, $user, $password, $db, $consulta);
 
-if($linha = $resultado->fetch_assoc()){
+if ($linha = $resultado->fetch_assoc()) {
     $senha_salva = $linha['Senha'];
-    $cpf_ref     = $linha['CPF'];
+    $id_usuario  = $linha['IdUsuario'];
 }
 
-if(md5($senha) != $senha_salva){
+if (md5($senha) != $senha_salva) {
     $_SESSION['erro_login'] = 'Login ou senha incorretos. Tente novamente.';
     header('Location: login.php');
     exit;
@@ -30,12 +30,12 @@ if(md5($senha) != $senha_salva){
 // Login válido — cria sessão
 $_SESSION['Logado'] = 'ok';
 $_SESSION['Nome']   = $login;
-$_SESSION['CPF']    = $cpf_ref;
 
-$consulta  = "SELECT * FROM usuarios WHERE CPF = '$cpf_ref'";
+$consulta  = "SELECT * FROM usuarios WHERE Id = '$id_usuario'";
 $resultado = banco($server, $user, $password, $db, $consulta);
 
-if($dados = $resultado->fetch_assoc()){
+if ($dados = $resultado->fetch_assoc()) {
+    $_SESSION['CPF']          = $dados['CPF'];
     $_SESSION['NomeCompleto'] = $dados['Nome'];
     $_SESSION['Endereco']     = $dados['Endereco'];
     $_SESSION['Cidade']       = $dados['Cidade'];
@@ -45,14 +45,14 @@ if($dados = $resultado->fetch_assoc()){
 }
 
 // Redireciona para onde o usuário queria ir
-if(isset($_SESSION['redirect_apos_login'])){
+if (isset($_SESSION['redirect_apos_login'])) {
     $destino = $_SESSION['redirect_apos_login'];
     unset($_SESSION['redirect_apos_login']);
     header('Location: '.$destino);
     exit;
 }
 
-if(!empty($_SESSION['carrinho'])){
+if (!empty($_SESSION['carrinho'])) {
     header('Location: carrinho.php');
     exit;
 }
